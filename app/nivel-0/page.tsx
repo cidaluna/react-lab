@@ -4,9 +4,12 @@
 //   );
 // }
 
+import {ClientName} from '@/components/ClientName';
 
-const Page = () => {
-  return <p>Page</p>;
-}
+const Page = () => (
+  <div>
+    <ClientName />
+  </div>
+);
 
 export default Page;
