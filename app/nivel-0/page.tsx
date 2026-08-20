@@ -8,7 +8,7 @@ import {ClientName} from '@/components/ClientName';
 
 const Page = () => (
   <div>
-    <ClientName />
+    <ClientName name={'Cida'} />
   </div>
 );
 

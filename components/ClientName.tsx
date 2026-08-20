@@ -1,4 +1,3 @@
-const name = 'Cida';
-export const ClientName = () => {
-  return <p>{name}</p>
+export const ClientName = (props) => {
+  return <p>{props.name}</p>
 }
