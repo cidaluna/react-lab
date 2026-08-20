@@ -1,3 +1,4 @@
+const name = 'Cida';
 export const ClientName = () => {
-  return <p>Cida</p>
+  return <p>{name}</p>
 }
