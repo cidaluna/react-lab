@@ -7,6 +7,7 @@
 import {Hobbies} from '@/components/Hobbies';
 import {CustomImage} from '@/components/CustomImage';
 import {ClientName} from '@/components/ClientName';
+import Link from 'next/link';
 
 type PageProps = {
   params: Promise<{
@@ -23,6 +24,7 @@ const Page = async ({ params }: PageProps) => {
       <Hobbies />
       Gosto de:
       <CustomImage />
+      <Link className="underline" href="/nivel-0">Voltar</Link>
     </div>
   );
 };
