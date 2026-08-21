@@ -1,10 +1,13 @@
 import { FC } from "react"
 
-export const ClientName: FC<{ name: string, age:number, birthDateFake: Date }> = (props) => {
+type ClientNameProps = { name: string; age: number; birthDateFake: Date };
+
+export const ClientName: FC<ClientNameProps> = (props) => {
+  const { name, age, birthDateFake } = props;
   return (
     <>
-      <p>Sou a {props.name}!</p>
-      <p>Tenho {props.age} anos, porque nasci em {props.birthDateFake.toLocaleDateString('pt-BR')}</p>
+      <p>Sou a {name}!</p>
+      <p>Tenho {age} anos, porque nasci em {birthDateFake.toLocaleDateString('pt-BR')}</p>
     </>
   );
 }
