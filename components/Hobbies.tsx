@@ -3,13 +3,20 @@ const hobbies = ["Fotografia", "Natureza", "Costura", "Passarinhar"];
 export const Hobbies = () => {
   const [hobbyPlus, ...othersHobbies] = hobbies;
 
+  const newsHobbies = ["Festas", "Leituras"];
+
+  const myHobbies = [
+    ...othersHobbies,
+    ...newsHobbies
+  ]
+
   return (
     <>
       <p>Estes são os meus hobbies:</p>
       <ul className="list-disc pl-6">
         <li className="font-bold">{hobbyPlus}</li>
-        {othersHobbies.map((other, i) => (
-          <li key={`hobby-${i}`}>{other}</li>
+        {myHobbies.map((myHobby, i) => (
+          <li key={`hobby-${i}`}>{myHobby}</li>
         ))}
       </ul>
     </>
