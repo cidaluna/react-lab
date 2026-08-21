@@ -19,11 +19,13 @@ const Page = async ({ params }: PageProps) => {
   const { name } = await params;
 
   return (
-    <div>
+    <div className='p-4 grid gap-y-4'>
       <ClientName name={name} age={39} birthDateFake={new Date(1987, 7, 29)} />
       <Hobbies />
-      Gosto de:
-      <CustomImage />
+      <div>
+        <p>Gosto de:</p>
+        <CustomImage />
+      </div>
       <Link className="underline" href="/nivel-0">Voltar</Link>
     </div>
   );
