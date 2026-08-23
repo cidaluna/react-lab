@@ -1,11 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./Button";
 
 export const Counter = () => {
   const [counter, setCounter] = useState(0);
   const [something, setSomething] = useState("");
+
+  useEffect(() => {
+    console.log("Componente Counter foi atualizado!");
+  });
 
   return (
     <div className="grid gap-y-4">
