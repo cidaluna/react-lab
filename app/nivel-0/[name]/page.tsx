@@ -17,6 +17,7 @@ type PageProps = {
 
 const Page = async ({ params }: PageProps) => {
   const { name } = await params;
+  console.log("Hello");
 
   return (
     <div className='p-4 grid gap-y-4'>
