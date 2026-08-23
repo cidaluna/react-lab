@@ -20,7 +20,7 @@ const Page = async ({ params }: PageProps) => {
   console.log("Hello");
 
   return (
-    <div className='p-4 grid gap-y-4'>
+    <div className='grid gap-y-4'>
       <ClientName name={name} age={39} birthDateFake={new Date(1987, 7, 29)} />
       <Hobbies />
       <div>
