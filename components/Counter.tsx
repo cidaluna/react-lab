@@ -8,8 +8,8 @@ export const Counter = () => {
   const [something, setSomething] = useState("");
 
   useEffect(() => {
-    console.log("Componente Counter foi atualizado!");
-  });
+    console.log("State: Counter foi atualizado!");
+  }, [counter]);
 
   return (
     <div className="grid gap-y-4">
