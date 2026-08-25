@@ -11,19 +11,17 @@ type CounterContextType = {
 
 export const CounterContext = createContext<CounterContextType | undefined>(undefined);
 
+function getInitialCounter(): CounterType {
+  if (typeof window === "undefined") return null; // SSR não tem sessionStorage
+  const counterSessionStorage = sessionStorage.getItem("counter");
+  return counterSessionStorage !== null ? +counterSessionStorage : null;
+}
+
 export default function CounterProvider({ children }: { children: ReactNode }) {
-  const [counter, setCounter] = useState<CounterType>(null);
+  const [counter, setCounter] = useState<CounterType>(getInitialCounter);
 
   useEffect(() => {
-    const counterSessionStorage = sessionStorage.getItem("counter") ?? 0;
-    console.log('counterSessionStorage', counterSessionStorage);
-    if (counterSessionStorage !== null) {
-      setCounter(+counterSessionStorage);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (counter) {
+    if (counter !== null) {
       sessionStorage.setItem("counter", counter.toString());
     }
   }, [counter]);
@@ -35,11 +33,10 @@ export default function CounterProvider({ children }: { children: ReactNode }) {
   );
 }
 
-// 3. Hook customizado para consumo seguro nos componentes da aplicação
-export const useCounter = () => {
+export function useCounter() {
   const context = useContext(CounterContext);
-  if (!context) {
-    throw new Error(":: useCounter deve ser usado dentro de um CounterProvider");
+  if (context === undefined) {
+    throw new Error('useCounter deve ser usado dentro de um CounterProvider');
   }
   return context;
-};
+}
