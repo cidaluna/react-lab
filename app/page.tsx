@@ -21,8 +21,13 @@ export default function Home() {
             </Link>
           </li>
           <li>
-            <Link className="underline" href="/aula-3">
-            Aula 3
+            <Link className="underline" href="/aula-3/server-side">
+            Aula 3 - Server-side
+            </Link>
+          </li>
+          <li>
+            <Link className="underline" href="/aula-3/client-side">
+            Aula 3 - Client-side
             </Link>
           </li>
         </ol>

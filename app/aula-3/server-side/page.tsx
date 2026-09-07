@@ -1,9 +1,6 @@
+import { Post } from "@/app/types";
 import Link from "next/link";
 
-interface Post {
-  id: number;
-  title: string;
-}
 
 export default async function Page() {
   const response = await fetch("https://api.vercel.app/blog");
