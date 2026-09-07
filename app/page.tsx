@@ -30,6 +30,11 @@ export default function Home() {
             Aula 3 - Client-side
             </Link>
           </li>
+          <li>
+            <Link className="underline" href="/aula-3/community-libraries">
+            Aula 3 - Community libraries
+            </Link>
+          </li>
         </ol>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
