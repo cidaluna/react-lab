@@ -7,7 +7,8 @@ interface Post {
 
 export default async function Page() {
   const response = await fetch("https://api.vercel.app/blog");
-  const posts = await response.json();
+  const posts: Post[] = await response.json();
+  console.log("Post 0: ", posts[0]); {/* para ver o tipo do id e quais demais campos existem na estrutura de cada objeto retornado */}
   return (
     <div>
       <Link 
@@ -18,7 +19,7 @@ export default async function Page() {
     </Link>
      <ul>
       {
-        posts.map((post: Post) => (
+        posts.map((post) => (
           <li key={post.id}>{post.title}</li>
         ))
       }
