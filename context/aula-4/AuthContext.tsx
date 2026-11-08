@@ -1,15 +1,17 @@
 "use client";
 
 import { createContext, useState, useContext, useEffect } from 'react';
+import Cookies from 'js-cookie';
+import jwt from "jsonwebtoken";
 
-type User = {
+export type User = {
   email: string;
   role: "user" | "admin";
 }
 
 type AuthContextProps = {
-  user: User | null;
   token: string | null;
+  user: User | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 };
@@ -17,22 +19,17 @@ type AuthContextProps = {
 const AuthContext = createContext({} as AuthContextProps);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    const savedToken = localStorage.getItem("token");
+    const savedToken = Cookies.get('token');
 
-    if (savedToken && savedUser) {
-      // Envelopar em um setTimeout joga a execução para a fila assíncrona, ou seja, 
-      // Ao adicionar o setTimeout(..., 0), você diz ao React: "Monte o componente primeiro e, logo 
-      // em seguida, execute essas atualizações". Isso evita que o ciclo de montagem síncrona do useEffect 
-      // entre em conflito com a renderização da tela.
-      setTimeout(() => {
-        setUser(JSON.parse(savedUser)); // localstorage é chave e valor, armazena como string, parse para que fique acessivel como objeto e nao como uma string
-        setToken(savedToken);
-      }, 0);
+    if (savedToken) {
+      const { email, role } = jwt.decode(savedToken) as unknown as User;
+
+      setUser({ email, role });
+      setToken(savedToken);
     }
   }, []); // array vazio é executado sempre que inicia o componente/context.
 
@@ -46,26 +43,27 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       credentials: "include",
     });
 
-    const data = await res.json();
+    // Se vier HTML (404/500), data fica null em vez de estourar SyntaxError
+    const data = await res.json().catch(() => null);
 
     if (res.ok) {
       setUser(data.user);
+      setToken(data.token);
     } else {
       setToken(null);
       setUser(null);
-      throw new Error(data.message);
+      throw new Error(data?.message ?? `Falha no login (status ${res.status})`);
     }
   };
 
   const logout = () => {
     setToken(null);
     setUser(null);
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    Cookies.remove('token');
   }
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ token, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

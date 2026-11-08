@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 export function middleware(req: NextRequest) {
   console.log("Req: ", req);
-  const token = req.headers.get("authorization")?.split(" ")[1];
+  const token = req.cookies.get("token")?.value;
 
   if (!token) return NextResponse.redirect(new URL("/aula-4/login", req.url));
 
