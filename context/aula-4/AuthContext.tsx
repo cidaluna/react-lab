@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []); // array vazio é executado sempre que inicia o componente/context.
 
   const login = async (email: string, password: string) => {
-    const res = await fetch("/api/auth", {
+    const res = await fetch("/aula-4/api/auth", {
       method: "POST",
       body: JSON.stringify({email, password}),
     });

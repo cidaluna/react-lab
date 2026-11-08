@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import jwt from 'jsonwebtoken';
 
+//teste
+export async function GET() {
+  console.log("[api/ping] rota alcançada");
+  return NextResponse.json({ ok: true });
+}
+
 export async function POST(req: Request) {
   const { email, password } = await req.json();
 
