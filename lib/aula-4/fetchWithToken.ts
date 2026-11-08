@@ -1,4 +1,4 @@
-export const fetchWithAuth = async (
+export const fetchWithToken = async (
   url: string,
   token: string,
   options: RequestInit = {}

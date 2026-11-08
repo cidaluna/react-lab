@@ -13,7 +13,7 @@ export function middleware(req: NextRequest) {
     console.log("Decoded: ", decoded);
     const role = (decoded as any).role;
 
-    if (req.nextUrl.pathname.startsWith("/dashboard") && role !== "admin") {
+    if (req.nextUrl.pathname.startsWith("/aula-4/dashboard") && role !== "admin") {
       return NextResponse.redirect(new URL("/aula-4/login", req.url));
     }
 
@@ -24,5 +24,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard"],
+  matcher: ["/aula-4/dashboard"],
 };

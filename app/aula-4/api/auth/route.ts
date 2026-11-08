@@ -1,12 +1,6 @@
 import { NextResponse } from "next/server";
 import jwt from 'jsonwebtoken';
 
-//teste
-export async function GET() {
-  console.log("[api/ping] rota alcançada");
-  return NextResponse.json({ ok: true });
-}
-
 export async function POST(req: Request) {
   const { email, password } = await req.json();
 
@@ -18,7 +12,16 @@ export async function POST(req: Request) {
       expiresIn: "1h",
     });
 
-    return NextResponse.json({ token, user });
+    const response = NextResponse.json({ user })
+
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      secure: true,
+      path: '/',
+      maxAge: 60 * 60, // 1 hora
+    })
+
+    return response;
   }
 
   return NextResponse.json(

@@ -40,7 +40,7 @@ export default function LoginPage() {
     setError(null);
     try {
       await login(email, password);
-      router.push("/dashboard");
+      router.push("/aula-4/dashboard");
     } catch (err) {
       console.error("Login falhou", err);
       setError("E-mail ou senha inválidos.");

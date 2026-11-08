@@ -40,20 +40,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const res = await fetch("/aula-4/api/auth", {
       method: "POST",
       body: JSON.stringify({email, password}),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
     });
 
     const data = await res.json();
 
     if (res.ok) {
       setUser(data.user);
-      setToken(data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem("token", data.token);
     } else {
       setToken(null);
       setUser(null);
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
       throw new Error(data.message);
     }
   };

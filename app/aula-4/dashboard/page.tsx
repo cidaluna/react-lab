@@ -10,7 +10,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!user) {
-      router.push("/login");
+      router.push("/aula-4/login");
     }
   }, [user, router]);
 
@@ -20,7 +20,10 @@ export default function Dashboard() {
     <div>
       <h1>Bem vindo, {user.email}!</h1>
       <p>Sua role: {user.role}</p>
-      <button onClick={logout}>Sair</button>
+      <button
+        onClick={logout}
+        className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 rounded-xl transition-colors text-sm"
+        >Sair</button>
     </div>
   )
 
