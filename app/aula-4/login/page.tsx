@@ -12,7 +12,8 @@ export default function LoginPage() {
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); // Cancela o comportamento padrão do navegador para o evento (o envio nativo do formulário), 
+    // evitando o reload da página e, com isso, preservando o estado.
     try {
       await login(email, password);
       router.push("/dashboard");

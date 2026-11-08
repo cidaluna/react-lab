@@ -30,11 +30,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       // em seguida, execute essas atualizações". Isso evita que o ciclo de montagem síncrona do useEffect 
       // entre em conflito com a renderização da tela.
       setTimeout(() => {
-        setUser(JSON.parse(savedUser));
+        setUser(JSON.parse(savedUser)); // localstorage é chave e valor, armazena como string, parse para que fique acessivel como objeto e nao como uma string
         setToken(savedToken);
       }, 0);
     }
-  }, []);
+  }, []); // array vazio é executado sempre que inicia o componente/context.
 
   const login = async (email: string, password: string) => {
     const res = await fetch("/api/auth", {

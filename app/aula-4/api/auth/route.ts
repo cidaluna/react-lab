@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 export async function POST(req: Request) {
   const { email, password } = await req.json();
 
+  // retorna token simples para exemplificar recuperação de credenciais
   if (email === "admin@example.com" && password === "123456") {
     const user = { email, role: "admin" };
 
