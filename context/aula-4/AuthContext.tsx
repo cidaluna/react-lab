@@ -50,6 +50,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("token", data.token);
     } else {
+      setToken(null);
+      setUser(null);
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
       throw new Error(data.message);
     }
   };
