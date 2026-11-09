@@ -21,6 +21,11 @@ export default function Home() {
             </Link>
           </li>
           <li>
+            <Link className="underline" href="/nivel-3">
+            Aula 2 - Teste Custom Button - Nível 3
+            </Link>
+          </li>
+          <li>
             <Link className="underline" href="/aula-3/server-side">
             Aula 3 - Server-side
             </Link>
