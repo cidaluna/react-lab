@@ -1,16 +1,34 @@
+.example-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+
+  padding: 2rem;
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
 .custom-button {
-  // Define as propriedades visuais compartilhadas.
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+
+  box-sizing: border-box;
+  min-width: fit-content;
 
   border: 1px solid transparent;
   border-radius: 0.5rem;
 
   font-family: inherit;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1;
   text-decoration: none;
   white-space: nowrap;
 
@@ -21,16 +39,12 @@
     background-color 160ms ease,
     border-color 160ms ease,
     color 160ms ease,
-    box-shadow 160ms ease,
-    transform 160ms ease;
-
-  // Garante que os elementos respeitem o box model.
-  box-sizing: border-box;
+    box-shadow 160ms ease;
 
   // Define os tamanhos disponíveis.
   &--small {
     min-height: 2rem;
-    padding: 0.375rem 0.75rem;
+    padding: 0.5rem 0.875rem;
     font-size: 0.8125rem;
   }
 
@@ -42,7 +56,7 @@
 
   &--large {
     min-height: 3rem;
-    padding: 0.75rem 1.25rem;
+    padding: 0.875rem 1.25rem;
     font-size: 1rem;
   }
 
@@ -64,6 +78,7 @@
 
     &:hover:not(:disabled):not([aria-disabled='true']) {
       background-color: #f1f5f9;
+      border-color: #94a3b8;
     }
   }
 
@@ -81,6 +96,7 @@
   &--inverted {
     color: #1e293b;
     background-color: #ffffff;
+    border-color: #e2e8f0;
 
     &:hover:not(:disabled):not([aria-disabled='true']) {
       background-color: #e2e8f0;
@@ -98,12 +114,6 @@
   &[aria-disabled='true'] {
     opacity: 0.5;
     cursor: not-allowed;
-    pointer-events: auto;
-  }
-
-  // Evita animações para usuários com preferência por movimento reduzido.
-  @media (prefers-reduced-motion: reduce) {
-    transition: none;
   }
 
   // Define o comportamento visual do ícone.
@@ -114,13 +124,20 @@
     flex-shrink: 0;
 
     svg {
+      display: block;
       width: 1.125em;
       height: 1.125em;
     }
   }
 
-  // Evita quebra desnecessária do texto.
+  // Mantém o texto alinhado verticalmente.
   &__label {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  // Respeita a preferência por movimento reduzido.
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 }

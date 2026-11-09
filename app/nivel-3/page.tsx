@@ -27,63 +27,58 @@ export default function Page() {
 
   return (
     <main className="example-page">
+
       <Link 
-        href="/" 
-        className="inline-flex items-center gap-2 text-md font-medium text-gray-600 hover:text-black transition-colors mb-6"
-      >
+          href="/" 
+          className="inline-flex items-center gap-2 text-md font-medium text-gray-600 hover:text-black transition-colors mb-6"
+        >
         ← Ir para a Home
       </Link>
+
       <h1>Exemplo CustomButton</h1>
 
       <p role="status" aria-live="polite">
         {message}
       </p>
 
-      {/* Botão primário com texto e ícone. */}
-      <CustomButton
-        label={loading ? 'Salvando...' : 'Salvar'}
-        icon={<span aria-hidden="true">✓</span>}
-        variant="primary"
-        size="large"
-        disabled={loading}
-        onClick={handleSave}
-        aria-label="Salvar informações"
-        aria-description="Salva as informações do formulário"
-      />
+      <div className="example-page__actions">
 
-      {/* Botão secundário somente com texto. */}
-      <CustomButton
-        label="Cancelar"
-        variant="secondary"
-        size="default"
-        onClick={handleCancel}
-      />
+        <CustomButton
+          label={loading ? 'Salvando...' : 'Salvar'}
+          variant="primary"
+          size="large"
+          disabled={loading}
+          onClick={handleSave}
+        />
 
-      {/* Botão de ação destrutiva. */}
-      <CustomButton
-        label="Excluir"
-        variant="danger"
-        size="small"
-        onClick={() => setMessage('Solicitação de exclusão enviada.')}
-      />
+        <CustomButton
+          label="Cancelar"
+          variant="secondary"
+          onClick={handleCancel}
+        />
 
-      {/* Botão invertido. */}
-      <CustomButton
-        label="Continuar"
-        variant="inverted"
-        size="large"
-        onClick={() => setMessage('Continuando...')}
-      />
+        <CustomButton
+          label="Excluir"
+          variant="danger"
+          size="small"
+          onClick={() => setMessage('Solicitação de exclusão enviada.')}
+        />
 
-      {/* Elemento de navegação utilizando a apresentação de botão. */}
-      <CustomButton
-        as="a"
-        href="/sobre"
-        label="Conheça nossa empresa"
-        variant="primary"
-        size="default"
-        target="_self"
-      />
+        <CustomButton
+          label="Continuar"
+          variant="inverted"
+          size="large"
+          onClick={() => setMessage('Continuando...')}
+        />
+
+        <CustomButton
+          as="a"
+          href="/sobre"
+          label="Conheça nossa empresa"
+          variant="primary"
+        />
+
+      </div>
     </main>
   );
 }
